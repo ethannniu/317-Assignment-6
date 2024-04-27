@@ -30,27 +30,85 @@
         }
         console.log(count);
 
-        var uniques = [];
-        var value;
-        for(ele in count) {
-            var element = {};
-            value = ele
-            element[value] = count[ele];
-
-            uniques.push(element);
+        let uniques = [];
+        for(var word in count) {
+            uniques.push([word, count[word]]);
         }
         console.log(uniques);
 
-        function compareFrequency(a, b) {
-            console.log(a.value);
-            return a.value - b.value;
+        uniques.sort(function(a, b) {
+            return b[1] - a[1];
+        });
 
+        console.log(uniques);
+        let r = 0;
+        let bool = true;
+        console.log(uniques.length);
+
+        while(bool) {
+            r = 0;
+            for(let i = 0;i < uniques.length - 1; i++) {
+                // console.log(uniques);
+                // console.log(uniques[i][1]);
+                // console.log(uniques[i + 1][1]);
+
+                if(uniques[i][1] === uniques[i + 1][1]) {
+                    console.log("dogsad");
+
+                    // console.log(uniques[i][0]);
+                    // console.log(uniques[i + 1][0]);
+                    // console.log(uniques[i][0] > uniques[i + 1][0])
+                    if(uniques[i][0] < uniques[i + 1][0]){
+
+                        var temp = uniques[i];
+                        uniques[i] = uniques[i + 1];
+                        uniques[i + 1] = temp;
+                        r--;
+                    }
+                    r++;
+                }
+                else{  
+                    r++;
+                }   
+            }
+            if(r ===uniques.length - 1) {
+                break;
+            }
         }
 
-        uniques.sort(compareFrequency);
+        console.log(uniques);
+
+        var sorted = Object.fromEntries(uniques);
+        console.log(sorted);
+
+
+        let table = document.createElement('table');
+        table.insertRow();
+
+        // let keysSorted = Object.keys(count).sort(function(a,b){return count[a]-count[b]})
+
+        // console.log(keysSorted);
+
+        // var value;
+        // for(ele in count) {
+        //     var element = {};
+        //     value = ele
+        //     element[value] = count[ele];
+
+        //     uniques.push(element);
+        // }
+        // console.log(uniques);
+
+        // function compareFrequency(a, b) {
+        //     console.log(a.value);
+        //     return a.value - b.value;
+
+        // }
+
+        // uniques.sort(compareFrequency);
         
 
-        console.log(uniques);
+        // console.log(uniques);
 
 
 
@@ -95,16 +153,6 @@
         // console.log(order);
     }
 
-    // button.addEventListener('submit', function() {
-    //     var text1 = x.value; 
-    //     alert("click");
-
-    // })
-    
-    // function countWords(text){
-    //     const myArray = text.split(" ");
-    //     console.log(myArray);
-    // }
 
 
 
