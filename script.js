@@ -12,6 +12,12 @@
     document.body.append(button);
     
     button.onclick = function() {
+        let body = document.getElementById("root");
+        if(body.children.length > 0) {
+            body.removeChild(body.firstChild);
+        }
+
+
         const text1 = x.value; 
         console.log(text1);
 
@@ -48,16 +54,10 @@
         while(bool) {
             r = 0;
             for(let i = 0;i < uniques.length - 1; i++) {
-                // console.log(uniques);
-                // console.log(uniques[i][1]);
-                // console.log(uniques[i + 1][1]);
 
                 if(uniques[i][1] === uniques[i + 1][1]) {
                     console.log("dogsad");
 
-                    // console.log(uniques[i][0]);
-                    // console.log(uniques[i + 1][0]);
-                    // console.log(uniques[i][0] > uniques[i + 1][0])
                     if(uniques[i][0] < uniques[i + 1][0]){
 
                         var temp = uniques[i];
@@ -82,75 +82,58 @@
         console.log(sorted);
 
 
-        let table = document.createElement('table');
-        table.insertRow();
 
-        // let keysSorted = Object.keys(count).sort(function(a,b){return count[a]-count[b]})
+        var div = document.createElement('div');
 
-        // console.log(keysSorted);
+        let table = document.createElement("table");
+        // var tblBody = document.createElement("tbody");
 
-        // var value;
-        // for(ele in count) {
-        //     var element = {};
-        //     value = ele
-        //     element[value] = count[ele];
+        const tr = table.insertRow();
 
-        //     uniques.push(element);
-        // }
-        // console.log(uniques);
+        var th = document.createElement('th');
+        th.innerHTML = "word_name";
+        tr.appendChild(th);
 
-        // function compareFrequency(a, b) {
-        //     console.log(a.value);
-        //     return a.value - b.value;
-
-        // }
-
-        // uniques.sort(compareFrequency);
-        
-
-        // console.log(uniques);
+        var th = document.createElement('th');
+        th.innerHTML = "word_frequency";
+        tr.appendChild(th);
+        table.appendChild(tr);
 
 
 
-        // for(let i = 0; i < uniques.length;i++) {
-        //     var obj = {
-        //         [uniques[i]]: count.uniques,
-        //       }
+        for (let i = 0; i < 5; i++) {
+            const tr = table.insertRow();
 
-        // }
+            var td = document.createElement('td');
+            if(uniques.length > i + 1) {
+                td.innerHTML = uniques[i][0];
+            }
+            else(
+                td.innerHTML = ""
+            )
+            tr.appendChild(td);
 
-        // const order = Object.values(count).sort();
+            var td = document.createElement('td');
+            if(uniques.length > i + 1) {
+                td.innerHTML = uniques[i][1];
+            }
+            else(
+                td.innerHTML = ""
+            )
+            tr.appendChild(td);
 
-
-
-
-        // let stop = 0
-        // while(stop!=0) {
-        //     stop = 0
-        //     if(count.order[i] === count.order[i+1]){
-        //         if(order[i]< Object.keys(count)[i + 1]) {
-        //             let temp = order[i];
-        //             order[i] = order[i+ 1];
-        //             order[i+1] = temp;
-        //             stop++;
-        //         }
-        //     }
-        //     i++;
-        //     if(i > order.length - 1) {
-        //         i = 0;
-        //     }
-
-        // }
-        // console.log(order);
-        
+            table.appendChild(tr);
 
 
-        // function compare(a, b) {
-        //     return count[b] - count[a];
-        // }
-        // var order = count.sort();
+        }
 
-        // console.log(order);
+
+        div.append(table);
+        console.log(table);
+       
+       
+        body.append(div);
+
     }
 
 
